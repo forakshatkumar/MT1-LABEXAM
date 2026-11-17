@@ -3,10 +3,8 @@ import express from 'express';
 const app = express();
 const PORT = 4000;
 
-// Middleware to parse JSON data
 app.use(express.json());
 
-// Employee tasks array
 let tasks = [
     {
         id: 1,
@@ -31,12 +29,10 @@ let tasks = [
     }
 ];
 
-// GET: Retrieve all tasks
 app.get('/tasks', (req, res) => {
     res.status(200).json(tasks);
 });
 
-// GET: Retrieve task by ID
 app.get('/tasks/:id', (req, res) => {
     const id = Number(req.params.id);
 
@@ -51,7 +47,6 @@ app.get('/tasks/:id', (req, res) => {
     res.status(200).json(task);
 });
 
-// POST: Add a new task
 app.post('/tasks', (req, res) => {
     const { id, taskName, assignedTo, status, priority } = req.body;
 
@@ -90,8 +85,6 @@ app.post('/tasks', (req, res) => {
         task: newTask
     });
 });
-
-// PUT: Update an existing task
 app.put('/tasks/:id', (req, res) => {
     const id = Number(req.params.id);
 
@@ -127,7 +120,6 @@ app.put('/tasks/:id', (req, res) => {
     });
 });
 
-// DELETE: Delete a task
 app.delete('/tasks/:id', (req, res) => {
     const id = Number(req.params.id);
 
@@ -147,7 +139,6 @@ app.delete('/tasks/:id', (req, res) => {
     });
 });
 
-// Start Express server
 app.listen(PORT, () => {
     console.log(`Express Server running at http://localhost:${PORT}`);
 });
